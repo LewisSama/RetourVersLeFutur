@@ -26,8 +26,9 @@ class TimeTravel extends DateTime
     public function backToFutureStepByStep(DatePeriod $step){
         echo '<ul>';
         foreach($step as $date){
-            echo '<li>' .  $date->format('Y-m-d') . "</li>";
+            echo '<li>' .  $date->format('M d Y A h:i') . "</li>";
         }
         echo '</ul>';
     }
 }
+
