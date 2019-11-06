@@ -5,30 +5,29 @@ class TimeTravel extends DateTime
     public $start;
     public $end;
 
-    public function __construct(string $start, string $end){
+    public function __construct(DateTimeImmutable $start, DateTime $end){
         parent::__construct();
-        $this->start = new DateTime($start);
-        $this->end = new DateTime($end);
+        $this->start = $start;
+        $this->end = $end;
+    }
+    public function setEnd(DateTimeImmutable $param){
+        $this->end = $param;
     }
 
     public function getTravelInfo()
     {
-        $start = $this->start;
-        $end = $this->end;
-        $diff = $end->diff($start);
+        $diff = $this->end->diff($this->start);
         return 'Il y a ' . $diff->y. ' années, ' . $diff->m . ' mois, ' . $diff->d . ' jours, ' .  $diff->h . ' heures, '. $diff->i . ' minutes, '. $diff->s . ' secondes entre les deux dates';
     }
     public function findDate(DateInterval $interval){
         $start = $this->start;
         $result = $start->sub($interval);
-        return $result->format('Y-m-d H:i:s');
+        return $result;
     }
     public function backToFutureStepByStep(DatePeriod $step){
-        echo '<ul>';
-        foreach($step as $date){
-            echo '<li>' .  $date->format('M d Y A h:i') . "</li>";
+        foreach($step as $date) {
+            echo $date->format('M d Y A h:i');
         }
-        echo '</ul>';
     }
 }
 
