@@ -24,7 +24,7 @@ echo $test->getTravelInfo();
 echo '<br/>';
 
 
-$interval = new DateInterval('PT5875200S');
+$interval = new DateInterval('P1M8D');
 $period = new DatePeriod($end2, $interval, $start);
 var_dump($period);
 $test->backToFutureStepByStep($period);
